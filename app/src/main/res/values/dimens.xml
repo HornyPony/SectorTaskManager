@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="viewPagerPadding">80dp</dimen>
+    <dimen name="guideImageRadius">12dp</dimen>
+    <dimen name="slideNumberTextSize">16sp</dimen>
+    <dimen name="guideDescriptionSize">12sp</dimen>
+    <dimen name="defaultTopMargin">6dp</dimen>
+</resources>

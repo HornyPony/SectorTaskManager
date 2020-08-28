@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SectorTaskManager</string>
+    <string name="end_tutorial">End Tutorial</string>
 </resources>

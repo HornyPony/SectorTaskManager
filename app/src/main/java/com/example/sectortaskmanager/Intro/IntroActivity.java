@@ -1,6 +1,5 @@
-package com.example.sectortaskmanager;
+package com.example.sectortaskmanager.Intro;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -8,10 +7,11 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.sectortaskmanager.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +71,10 @@ public class IntroActivity extends AppCompatActivity {
         introViewPager.setClipToPadding(false);
         introViewPager.setClipChildren(false);
         introViewPager.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        introViewPager.setPageTransformer(compositePageTransformer);
 
         stopTutorialButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,4 +1,4 @@
-package com.example.sectortaskmanager;
+package com.example.sectortaskmanager.Intro;
 
 public class IntroItem {
     private int guideImage;

@@ -1,13 +1,14 @@
 package com.example.sectortaskmanager.Intro;
 
-public class IntroItem {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class IntroItem implements Parcelable {
     private int guideImage;
-    private String slideNumber;
     private String guideDescription;
 
-    public IntroItem(int guideImage, String slideNumber, String guideDescription) {
+    public IntroItem(int guideImage, String guideDescription) {
         this.guideImage = guideImage;
-        this.slideNumber = slideNumber;
         this.guideDescription = guideDescription;
     }
 
@@ -19,19 +20,21 @@ public class IntroItem {
         this.guideImage = guideImage;
     }
 
-    public String getSlideNumber() {
-        return slideNumber;
-    }
-
-    public void setSlideNumber(String slideNumber) {
-        this.slideNumber = slideNumber;
-    }
-
     public String getGuideDescription() {
         return guideDescription;
     }
 
     public void setGuideDescription(String guideDescription) {
         this.guideDescription = guideDescription;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }

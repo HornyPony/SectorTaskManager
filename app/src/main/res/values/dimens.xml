@@ -3,6 +3,11 @@
     <dimen name="viewPagerPadding">80dp</dimen>
     <dimen name="guideImageRadius">12dp</dimen>
     <dimen name="slideNumberTextSize">16sp</dimen>
-    <dimen name="guideDescriptionSize">12sp</dimen>
+    <dimen name="guideDescriptionSize">15sp</dimen>
     <dimen name="defaultTopMargin">6dp</dimen>
+    <dimen name="view_pager_width">338dp</dimen>
+    <dimen name="view_pager_height">439dp</dimen>
+    <dimen name="tab_max_width">10dp</dimen>
+    <dimen name="card_view_corner_radius">20dp</dimen>
+    <dimen name="cardview_text_padding">15dp</dimen>
 </resources>

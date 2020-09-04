@@ -1,0 +1,29 @@
+[33mcommit 327147d651083520257cb119c215483889ca1bc6[m[33m ([m[1;36mHEAD -> [m[1;32manvar-intro[m[33m)[m
+Author: Anvar Vagapov <anvar.vagapov14@list.ru>
+Date:   Tue Sep 1 20:03:09 2020 +0300
+
+    Intro with TabLayout
+
+[33mcommit f66b95293ce998dcbe3948d2194fff28e761c21a[m
+Author: Anvar Vagapov <anvar.vagapov14@list.ru>
+Date:   Sun Aug 30 15:36:00 2020 +0300
+
+    Intro made by RecyclerViewAdapter
+
+[33mcommit 74be7b0e717358bc215890e4d97fe0fe702a20c2[m[33m ([m[1;31morigin/anvar-intro[m[33m)[m
+Author: Anvar Vagapov <anvar.vagapov14@list.ru>
+Date:   Fri Aug 28 18:37:39 2020 +0300
+
+    Интро сделано в качестве Activity
+
+[33mcommit 02e9aa264f399ec1728e53021f0bbbbbddd26db1[m
+Author: Anvar Vagapov <anvar.vagapov14@list.ru>
+Date:   Thu Aug 27 16:18:10 2020 +0300
+
+    initial commit
+
+[33mcommit a6aba3a23af82614dd4e82169fd8eec71f10e81b[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: AndroidChill <androidChill@yandex.ru>
+Date:   Wed Aug 26 21:12:51 2020 +0300
+
+    init

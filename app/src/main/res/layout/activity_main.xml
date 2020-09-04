@@ -9,13 +9,13 @@
 
     <ImageButton
         android:id="@+id/calendarImageButton"
-        android:layout_width="74dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="309dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="@dimen/calendar_icon_size"
+        android:layout_height="@dimen/calendar_icon_size"
+        android:layout_marginTop="@dimen/calendar_icon_margin"
+        android:layout_marginEnd="@dimen/calendar_icon_margin"
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_calendar_today_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

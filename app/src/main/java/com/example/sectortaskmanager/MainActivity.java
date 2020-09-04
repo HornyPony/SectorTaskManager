@@ -1,11 +1,10 @@
 package com.example.sectortaskmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -22,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.calendarImageButton:
-                        Intent intent =
-                                new Intent(Intent.ACTION_INSERT, CalendarContract.Events.CONTENT_URI);
+                        Uri.Builder builder = UserCalendar.createCalendar();
+                        Intent intent = new Intent(Intent.ACTION_VIEW, builder.build());
                         startActivity(intent);
                 }
 

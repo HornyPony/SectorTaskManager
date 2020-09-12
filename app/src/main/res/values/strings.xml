@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">SectorTaskManager</string>
     <string name="end_tutorial">End Tutorial</string>
+    <string name="text_all_day">All Day</string>
+    <string name="text_event_start">Start</string>
+    <string name="text_event_end">End</string>
+    <string name="text_reminder_before">Reminder Before</string>
+    <string name="text_event_description">Description</string>
+    <string name="text_event_title">Title</string>
+    <string name="event_end_time">8:00 pm</string>
+    <string name="reminder_before_time">10 minutes</string>
+    <string name="text_event_repeat">Repeat</string>
+    <string name="repeat_time">Every month</string>
+    <string name="text_event_sound">Sound</string>
+    <string name="melody_name">Default</string>
+    <string name="event_start_time">September 7 8:00 am</string>
 </resources>

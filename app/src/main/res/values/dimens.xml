@@ -14,4 +14,5 @@
     <dimen name="calendar_icon_margin">25dp</dimen>
     <dimen name="images_add_event">36dp</dimen>
     <dimen name="between_Image_and_text">4dp</dimen>
+    <dimen name="layouts_paddings">10dp</dimen>
 </resources>

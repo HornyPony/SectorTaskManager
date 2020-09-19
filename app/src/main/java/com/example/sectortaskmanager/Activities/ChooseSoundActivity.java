@@ -1,8 +1,10 @@
-package com.example.sectortaskmanager;
+package com.example.sectortaskmanager.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.sectortaskmanager.R;
 
 public class ChooseSoundActivity extends AppCompatActivity {
 

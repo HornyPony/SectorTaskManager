@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChooseSoundActivity"></activity>
-        <activity android:name=".ChooseNotificationBehaviourActivity" />
-        <activity android:name=".AddEventActivity">
+        <activity android:name=".Activities.ChooseSoundActivity" />
+        <activity android:name=".Activities.ChooseNotificationBehaviourActivity" />
+        <activity android:name=".Activities.AddEventActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

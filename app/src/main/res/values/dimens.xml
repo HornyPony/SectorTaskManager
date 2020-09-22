@@ -15,4 +15,5 @@
     <dimen name="images_add_event">36dp</dimen>
     <dimen name="between_Image_and_text">4dp</dimen>
     <dimen name="layouts_paddings">10dp</dimen>
+    <dimen name="between_text">4dp</dimen>
 </resources>

@@ -7,12 +7,17 @@ import androidx.fragment.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.sectortaskmanager.MyDatePickerFragment;
 import com.example.sectortaskmanager.R;
 
-public class AddEventActivity extends AppCompatActivity {
+import org.w3c.dom.Text;
+
+public class AddEventActivity extends AppCompatActivity implements MyDatePickerFragment.mDateChangedListener, MyDatePickerFragment.mTimeChangedListener {
     ConstraintLayout chooseRingtoneLayout, chooseStartTimeLayout;
+public TextView startDateTextView;
+public TextView startTimeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +25,9 @@ public class AddEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_event);
         chooseRingtoneLayout = findViewById(R.id.chooseRingtoneLayout);
         chooseStartTimeLayout = findViewById(R.id.chooseStartTimeLayout);
+        startDateTextView = findViewById(R.id.startDateTextView);
+        startTimeTextView = findViewById(R.id.startTimeTextView);
+
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,5 +56,13 @@ public class AddEventActivity extends AppCompatActivity {
         datePickerFragment.show(getSupportFragmentManager(), "date picker");
     }
 
+    @Override
+    public void changeDate(String date) {
+startDateTextView.setText(date);
+    }
 
+    @Override
+    public void changeTime(String time) {
+startTimeTextView.setText(time);
+    }
 }

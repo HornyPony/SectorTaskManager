@@ -117,12 +117,24 @@
             >
 
             <TextView
+                android:id="@+id/startDateTextView"
+                style="@style/baseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/text_start_date"
+                android:layout_marginEnd="@dimen/between_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/startTimeTextView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/startTimeTextView"
                 style="@style/baseTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@string/event_start_time"
+                android:text="@string/text_start_time"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/startArrow"
                 app:layout_constraintTop_toTopOf="parent" />

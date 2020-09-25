@@ -17,8 +17,8 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 public class MyDatePickerFragment extends DialogFragment {
-    int HOUR;
-    int MINUTE;
+    private int HOUR;
+    private int MINUTE;
     private Calendar c;
     private mDateChangedListener dateChangedListener;
     private mTimeChangedListener timeChangedListener;
@@ -39,6 +39,7 @@ public class MyDatePickerFragment extends DialogFragment {
     private DatePickerDialog.OnDateSetListener dateSetListener =
             new DatePickerDialog.OnDateSetListener() {
                 public void onDateSet(DatePicker view, int year, int month, int day) {
+
                     Calendar datePickerCalendar = Calendar.getInstance();
                     datePickerCalendar.set(Calendar.YEAR, year);
                     datePickerCalendar.set(Calendar.MONTH, month);
@@ -47,6 +48,7 @@ public class MyDatePickerFragment extends DialogFragment {
                     String dateString = dateCharSequence.toString();
                     dateChangedListener.changeDate(dateString);
                     showTimePicker();
+
                 }
             };
 

@@ -11,25 +11,28 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.sectortaskmanager.MyDatePickerFragment;
+import com.example.sectortaskmanager.MyTimePickerFragment;
 import com.example.sectortaskmanager.R;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
-public class AddEventActivity extends AppCompatActivity implements MyDatePickerFragment.mDateChangedListener, MyDatePickerFragment.mTimeChangedListener {
-    private ConstraintLayout chooseRingtoneLayout, chooseStartTimeLayout;
-    private TextView startDateTextView, startTimeTextView;
+public class AddEventActivity extends AppCompatActivity implements MyDatePickerFragment.mDateChangedListener, MyDatePickerFragment.mTimeChangedListener,
+        MyTimePickerFragment.endTimeChangedListener
+{
+    private ConstraintLayout ringtoneLayout, startTimeLayout, endTimeLayout;
+    private TextView startDateTextView, startTimeTextView, endTimeTextView;
     private Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
-        chooseRingtoneLayout = findViewById(R.id.chooseRingtoneLayout);
-        chooseStartTimeLayout = findViewById(R.id.chooseStartTimeLayout);
+        ringtoneLayout = findViewById(R.id.ringtoneLayout);
+        startTimeLayout = findViewById(R.id.startTimeLayout);
+        endTimeLayout = findViewById(R.id.endTimeLayout);
         startDateTextView = findViewById(R.id.startDateTextView);
         startTimeTextView = findViewById(R.id.startTimeTextView);
+        endTimeTextView = findViewById(R.id.endTimeTextView);
          calendar = Calendar.getInstance();
         setStartDate();
         setStartTime();
@@ -37,20 +40,33 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
-                    case R.id.chooseRingtoneLayout:
+                    case R.id.ringtoneLayout:
                         chooseRingtone();
                         break;
-                    case R.id.chooseStartTimeLayout:
+                    case R.id.startTimeLayout:
                         showDatePicker();
-
+                        break;
+                    case R.id.endTimeLayout:
+                        showTimePicker();
+                        break;
                 }
             }
         };
 
-        chooseRingtoneLayout.setOnClickListener(onClickListener);
-        chooseStartTimeLayout.setOnClickListener(onClickListener);
+        ringtoneLayout.setOnClickListener(onClickListener);
+        startTimeLayout.setOnClickListener(onClickListener);
+        endTimeLayout.setOnClickListener(onClickListener);
     }
 
+    private void showTimePicker() {
+        DialogFragment timePickerFragment = new MyTimePickerFragment();
+        timePickerFragment.show(getSupportFragmentManager(), "time picker");
+    }
+
+    private void showDatePicker() {
+        DialogFragment datePickerFragment = new MyDatePickerFragment();
+        datePickerFragment.show(getSupportFragmentManager(), "date picker");
+    }
 
 
     private void setStartDate() {
@@ -64,18 +80,8 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
         CharSequence timeCharSequence = DateFormat.format("h:mm a", calendar);
         String timeString = timeCharSequence.toString();
         startTimeTextView.setText(timeString);
+        endTimeTextView.setText(timeString);
     }
-
-
-    private void chooseRingtone() {
-        startActivity(new Intent(AddEventActivity.this, ChooseNotificationBehaviourActivity.class));
-    }
-
-    private void showDatePicker() {
-        DialogFragment datePickerFragment = new MyDatePickerFragment();
-        datePickerFragment.show(getSupportFragmentManager(), "date picker");
-    }
-
     @Override
     public void changeDate(String date) {
         startDateTextView.setText(date);
@@ -87,4 +93,12 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
     }
 
 
+    @Override
+    public void changeEndTime(String time) {
+        endTimeTextView.setText(time);
+    }
+
+    private void chooseRingtone() {
+        startActivity(new Intent(AddEventActivity.this, ChooseNotificationBehaviourActivity.class));
+    }
 }

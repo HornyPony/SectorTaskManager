@@ -107,7 +107,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/chooseStartTimeLayout"
+            android:id="@+id/startTimeLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="@+id/startText"
@@ -342,7 +342,7 @@
             app:layout_constraintVertical_bias="0.5" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/chooseRingtoneLayout"
+            android:id="@+id/ringtoneLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -178,12 +178,26 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <TextView
+                android:id="@+id/endDateTextView"
+                style="@style/baseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/text_end_date"
+                android:layout_marginEnd="@dimen/between_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/endTimeTextView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/endTimeTextView"
                 style="@style/baseTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@string/event_end_time"
+                android:text="@string/text_end_time"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/endArrow"
                 app:layout_constraintTop_toTopOf="parent" />

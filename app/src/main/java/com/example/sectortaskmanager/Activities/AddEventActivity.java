@@ -11,16 +11,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.sectortaskmanager.MyDatePickerFragment;
-import com.example.sectortaskmanager.MyTimePickerFragment;
 import com.example.sectortaskmanager.R;
 
 import java.util.Calendar;
 
-public class AddEventActivity extends AppCompatActivity implements MyDatePickerFragment.mDateChangedListener, MyDatePickerFragment.mTimeChangedListener,
-        MyTimePickerFragment.endTimeChangedListener
+public class AddEventActivity extends AppCompatActivity implements MyDatePickerFragment.startDateChangedListener, MyDatePickerFragment.startTimeChangedListener,
+        MyDatePickerFragment.endDateChangedListener, MyDatePickerFragment.endTimeChangedListener
 {
     private ConstraintLayout ringtoneLayout, startTimeLayout, endTimeLayout;
-    private TextView startDateTextView, startTimeTextView, endTimeTextView;
+    private TextView startDateTextView, startTimeTextView, endTimeTextView, endDateTextView;
     private Calendar calendar;
 
     @Override
@@ -31,9 +30,10 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
         startTimeLayout = findViewById(R.id.startTimeLayout);
         endTimeLayout = findViewById(R.id.endTimeLayout);
         startDateTextView = findViewById(R.id.startDateTextView);
+        endDateTextView = findViewById(R.id.endDateTextView);
         startTimeTextView = findViewById(R.id.startTimeTextView);
         endTimeTextView = findViewById(R.id.endTimeTextView);
-         calendar = Calendar.getInstance();
+        calendar = Calendar.getInstance();
         setStartDate();
         setStartTime();
         View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -44,11 +44,11 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
                         chooseRingtone();
                         break;
                     case R.id.startTimeLayout:
-                        showDatePicker();
+                        showStartDatePicker();
                         break;
                     case R.id.endTimeLayout:
-                        showTimePicker();
-                        break;
+                       showEndDatePicker();
+                       break;
                 }
             }
         };
@@ -58,14 +58,14 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
         endTimeLayout.setOnClickListener(onClickListener);
     }
 
-    private void showTimePicker() {
-        DialogFragment timePickerFragment = new MyTimePickerFragment();
-        timePickerFragment.show(getSupportFragmentManager(), "time picker");
+    private void showEndDatePicker() {
+        DialogFragment datePickerFragment = new MyDatePickerFragment();
+        datePickerFragment.show(getSupportFragmentManager(), "end date picker");
     }
 
-    private void showDatePicker() {
+    private void showStartDatePicker() {
         DialogFragment datePickerFragment = new MyDatePickerFragment();
-        datePickerFragment.show(getSupportFragmentManager(), "date picker");
+        datePickerFragment.show(getSupportFragmentManager(), "start date picker");
     }
 
 
@@ -73,7 +73,6 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
         CharSequence dateCharSequence = DateFormat.format("EEE, dd MMM yyyy", calendar);
         String dateString = dateCharSequence.toString();
         startDateTextView.setText(dateString);
-
     }
 
     private void setStartTime() {
@@ -82,16 +81,21 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
         startTimeTextView.setText(timeString);
         endTimeTextView.setText(timeString);
     }
+
     @Override
-    public void changeDate(String date) {
+    public void changeStartDate(String date) {
         startDateTextView.setText(date);
     }
 
     @Override
-    public void changeTime(String time) {
+    public void changeStartTime(String time) {
         startTimeTextView.setText(time);
     }
 
+    @Override
+    public void changeEndDate(String date) {
+        endDateTextView.setText(date);
+    }
 
     @Override
     public void changeEndTime(String time) {

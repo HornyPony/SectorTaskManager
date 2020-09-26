@@ -1,6 +1,5 @@
 package com.example.sectortaskmanager;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -9,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
 import android.text.format.DateFormat;
 import android.widget.DatePicker;
@@ -20,9 +20,12 @@ public class MyDatePickerFragment extends DialogFragment {
     private int HOUR;
     private int MINUTE;
     private Calendar c;
-    private mDateChangedListener dateChangedListener;
-    private mTimeChangedListener timeChangedListener;
-
+    private startDateChangedListener startDateChangedListener;
+    private startTimeChangedListener startTimeChangedListener;
+    private endDateChangedListener endDateChangedListener;
+    private endTimeChangedListener endTimeChangedListener;
+    private Fragment endDate;
+    private Fragment startDate;
 
 
     @Override
@@ -39,6 +42,8 @@ public class MyDatePickerFragment extends DialogFragment {
     private DatePickerDialog.OnDateSetListener dateSetListener =
             new DatePickerDialog.OnDateSetListener() {
                 public void onDateSet(DatePicker view, int year, int month, int day) {
+                    endDate = getActivity().getSupportFragmentManager().findFragmentByTag("end date picker");
+                    startDate = getActivity().getSupportFragmentManager().findFragmentByTag("start date picker");
 
                     Calendar datePickerCalendar = Calendar.getInstance();
                     datePickerCalendar.set(Calendar.YEAR, year);
@@ -46,9 +51,12 @@ public class MyDatePickerFragment extends DialogFragment {
                     datePickerCalendar.set(Calendar.DATE, day);
                     CharSequence dateCharSequence = DateFormat.format("EEE, dd MMM yyyy", datePickerCalendar);
                     String dateString = dateCharSequence.toString();
-                    dateChangedListener.changeDate(dateString);
+                    if (startDate != null) {
+                        startDateChangedListener.changeStartDate(dateString);
+                    } else if (endDate != null) {
+                        endDateChangedListener.changeEndDate(dateString);
+                    }
                     showTimePicker();
-
                 }
             };
 
@@ -68,34 +76,56 @@ public class MyDatePickerFragment extends DialogFragment {
                         timePickerCalendar.set(Calendar.MINUTE, minute);
                         CharSequence timeCharSequence = DateFormat.format("h:mm a", timePickerCalendar);
                         String timeString = timeCharSequence.toString();
-                        timeChangedListener.changeTime(timeString);
+                        if (startDate != null) {
+                            startTimeChangedListener.changeStartTime(timeString);
+                        } else if (endDate != null) {
+                            endTimeChangedListener.changeEndTime(timeString);
+                        }
                     }
                 }, HOUR, MINUTE, is24HourFormat);
         timePickerDialog.show();
     }
 
-    public  interface mDateChangedListener {
-         void changeDate(String date);
+    public interface startDateChangedListener {
+        void changeStartDate(String date);
     }
 
-    public  interface mTimeChangedListener {
-        void changeTime(String time);
+    public interface startTimeChangedListener {
+        void changeStartTime(String time);
     }
+
+    public interface endDateChangedListener {
+        void changeEndDate(String date);
+    }
+
+    public interface endTimeChangedListener {
+        void changeEndTime(String time);
+    }
+
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         try {
-            dateChangedListener = (mDateChangedListener) context;
+            startDateChangedListener = (startDateChangedListener) context;
         } catch (ClassCastException e) {
-            throw  new ClassCastException(context.toString() + "must implement mDateChangedListener");
+            throw new ClassCastException(context.toString() + "must implement startDateChangedListener");
         }
-
         try {
-            timeChangedListener = (mTimeChangedListener) context;
+            startTimeChangedListener = (startTimeChangedListener) context;
         } catch (Exception e) {
-            throw  new ClassCastException(context.toString() + "must implement mTimeChangedListener");
+            throw new ClassCastException(context.toString() + "must implement startTimeChangedListener");
+        }
+        try {
+            endDateChangedListener = (endDateChangedListener) context;
+        } catch (Exception e) {
+            throw new ClassCastException(context.toString() + "must implement endDateChangedListener");
+        }
+        try {
+            endTimeChangedListener = (endTimeChangedListener) context;
+        } catch (Exception e) {
+            throw new ClassCastException(context.toString() + "must implement endTimeChangedListener");
         }
     }
 }

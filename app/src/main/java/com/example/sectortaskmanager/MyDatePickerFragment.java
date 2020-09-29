@@ -13,8 +13,13 @@ import androidx.fragment.app.Fragment;
 import android.text.format.DateFormat;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.example.sectortaskmanager.Util.SharedPreferencesHelper;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Objects;
 
 public class MyDatePickerFragment extends DialogFragment {
     private int HOUR;
@@ -26,6 +31,7 @@ public class MyDatePickerFragment extends DialogFragment {
     private endTimeChangedListener endTimeChangedListener;
     private Fragment endDate;
     private Fragment startDate;
+    private SharedPreferencesHelper mSharedPreferencesHelper;
 
 
     @Override
@@ -35,14 +41,14 @@ public class MyDatePickerFragment extends DialogFragment {
         int YEAR = c.get(Calendar.YEAR);
         int MONTH = c.get(Calendar.MONTH);
         int DAY = c.get(Calendar.DAY_OF_MONTH);
-
+        mSharedPreferencesHelper = new SharedPreferencesHelper(Objects.requireNonNull(getActivity()));
         return new DatePickerDialog(getActivity(), dateSetListener, YEAR, MONTH, DAY);
     }
 
     private DatePickerDialog.OnDateSetListener dateSetListener =
             new DatePickerDialog.OnDateSetListener() {
                 public void onDateSet(DatePicker view, int year, int month, int day) {
-                    endDate = getActivity().getSupportFragmentManager().findFragmentByTag("end date picker");
+                    endDate = Objects.requireNonNull(getActivity()).getSupportFragmentManager().findFragmentByTag("end date picker");
                     startDate = getActivity().getSupportFragmentManager().findFragmentByTag("start date picker");
 
                     Calendar datePickerCalendar = Calendar.getInstance();
@@ -51,14 +57,28 @@ public class MyDatePickerFragment extends DialogFragment {
                     datePickerCalendar.set(Calendar.DATE, day);
                     CharSequence dateCharSequence = DateFormat.format("EEE, dd MMM yyyy", datePickerCalendar);
                     String dateString = dateCharSequence.toString();
+
                     if (startDate != null) {
+                        saveStartDateInSP(datePickerCalendar);
                         startDateChangedListener.changeStartDate(dateString);
+
                     } else if (endDate != null) {
                         endDateChangedListener.changeEndDate(dateString);
                     }
                     showTimePicker();
                 }
             };
+
+    private void saveStartDateInSP(Calendar startDatePickerCalendar) {
+        Date date = startDatePickerCalendar.getTime();
+        boolean isAdded = mSharedPreferencesHelper.addUniqueCalendarDate(date);
+        if (isAdded) {
+            Toast.makeText(getActivity(), "Дата уже в SharedPreferences", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getActivity(), "Дата добавлена в SharedPreferences", Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     private void showTimePicker() {
         HOUR = c.get(Calendar.HOUR_OF_DAY);

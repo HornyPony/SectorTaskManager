@@ -11,7 +11,7 @@
     <string name="reminder_before_time">10 minutes</string>
     <string name="text_event_repeat">Repeat</string>
     <string name="repeat_time">Every month</string>
-    <string name="text_event_sound">Sound</string>
+    <string name="text_event_sound_mode">Sound mode</string>
     <string name="melody_name">Default</string>
     <string name="event_start_time">September 7 8:00 am</string>
     <string name="text_mute">Mute</string>
@@ -26,4 +26,19 @@
     <string name="text_start_time">8:00 am</string>
     <string name="text_end_date">22th September</string>
     <string name="text_end_time">9:00 am</string>
+    <string name="text_not_remind">Not Remind</string>
+    <string name="text_at_the_start">At the Start</string>
+    <string name="text_5_minutes_before">5 minutes before</string>
+    <string name="text_15_minutes_before">15 minutes before</string>
+    <string name="text_30_minutes_before">30 minutes before</string>
+    <string name="text_1_hour_before">1 hour before</string>
+    <string name="text_4_hours_before">4 hours Before</string>
+    <string name="text_1_day_before">1 day before</string>
+    <string name="text_2_days_before">2 days before</string>
+    <string name="text_once">Once</string>
+    <string name="text_everyday">Everyday</string>
+    <string name="text_weekly">Weekly</string>
+    <string name="text_after_3_weeks">Every 3 weeks</string>
+    <string name="text_monthly">Monthly</string>
+    <string name="text_annually">Annually</string>
 </resources>

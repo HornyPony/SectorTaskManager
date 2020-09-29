@@ -18,7 +18,7 @@ import java.util.Calendar;
 public class AddEventActivity extends AppCompatActivity implements MyDatePickerFragment.startDateChangedListener, MyDatePickerFragment.startTimeChangedListener,
         MyDatePickerFragment.endDateChangedListener, MyDatePickerFragment.endTimeChangedListener
 {
-    private ConstraintLayout ringtoneLayout, startTimeLayout, endTimeLayout;
+    private ConstraintLayout ringtoneLayout, startTimeLayout, endTimeLayout, reminderBeforeLayout, repeatModeLayout;
     private TextView startDateTextView, startTimeTextView, endTimeTextView, endDateTextView;
     private Calendar calendar;
 
@@ -29,13 +29,15 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
         ringtoneLayout = findViewById(R.id.ringtoneLayout);
         startTimeLayout = findViewById(R.id.startTimeLayout);
         endTimeLayout = findViewById(R.id.endTimeLayout);
+        reminderBeforeLayout = findViewById(R.id.reminderBeforeLayout);
         startDateTextView = findViewById(R.id.startDateTextView);
         endDateTextView = findViewById(R.id.endDateTextView);
         startTimeTextView = findViewById(R.id.startTimeTextView);
         endTimeTextView = findViewById(R.id.endTimeTextView);
+        repeatModeLayout = findViewById(R.id.repeatModeLayout);
         calendar = Calendar.getInstance();
-        setStartDate();
-        setStartTime();
+        setActualDate();
+        setActualTime();
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,14 +51,31 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
                     case R.id.endTimeLayout:
                        showEndDatePicker();
                        break;
+                    case R.id.reminderBeforeLayout:
+                        chooseReminderBefore();
+                        break;
+                    case R.id.repeatModeLayout:
+                        chooseRepeatMode();
+
                 }
             }
         };
 
+        reminderBeforeLayout.setOnClickListener(onClickListener);
         ringtoneLayout.setOnClickListener(onClickListener);
         startTimeLayout.setOnClickListener(onClickListener);
         endTimeLayout.setOnClickListener(onClickListener);
+        repeatModeLayout.setOnClickListener(onClickListener);
     }
+
+    private void chooseRepeatMode() {
+        startActivity(new Intent(AddEventActivity.this, RepeatModeActivity.class));
+    }
+
+    private void chooseReminderBefore() {
+        startActivity(new Intent(AddEventActivity.this, ChooseReminderBeforeActivity.class));
+    }
+
 
     private void showEndDatePicker() {
         DialogFragment datePickerFragment = new MyDatePickerFragment();
@@ -69,13 +88,14 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
     }
 
 
-    private void setStartDate() {
+    private void setActualDate() {
         CharSequence dateCharSequence = DateFormat.format("EEE, dd MMM yyyy", calendar);
         String dateString = dateCharSequence.toString();
         startDateTextView.setText(dateString);
+        endDateTextView.setText(dateString);
     }
 
-    private void setStartTime() {
+    private void setActualTime() {
         CharSequence timeCharSequence = DateFormat.format("h:mm a", calendar);
         String timeString = timeCharSequence.toString();
         startTimeTextView.setText(timeString);
@@ -103,6 +123,6 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
     }
 
     private void chooseRingtone() {
-        startActivity(new Intent(AddEventActivity.this, ChooseNotificationBehaviourActivity.class));
+        startActivity(new Intent(AddEventActivity.this, ChooseSoundModeActivity.class));
     }
 }

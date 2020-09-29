@@ -3,26 +3,27 @@ package com.example.sectortaskmanager.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.databinding.DataBindingUtil;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.sectortaskmanager.Intro.IntroItem;
 import com.example.sectortaskmanager.R;
+import com.example.sectortaskmanager.databinding.ActivityChooseReminderBeforeBinding;
 
-public class ChooseNotificationBehaviourActivity extends AppCompatActivity {
+
+public class ChooseReminderBeforeActivity extends AppCompatActivity {
+
+    private ActivityChooseReminderBeforeBinding binding;
+
     AppCompatCheckBox muteCheckBox, vibrationCheckBox, musicAndVibrationCheckBox, musicCheckBox;
     ConstraintLayout musicNameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_notifications_behaviour);
-        muteCheckBox = findViewById(R.id.muteCheckBox);
-        vibrationCheckBox = findViewById(R.id.vibrationCheckBox);
-        musicAndVibrationCheckBox = findViewById(R.id.musicAndVibrationCheckBox);
-        musicCheckBox = findViewById(R.id.musicCheckBox);
-        musicNameLayout = findViewById(R.id.musicNameLayout);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_choose_reminder_before);
 
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -33,11 +34,11 @@ public class ChooseNotificationBehaviourActivity extends AppCompatActivity {
 
         };
 
-        muteCheckBox.setOnClickListener(onClickListener);
-        vibrationCheckBox.setOnClickListener(onClickListener);
-        musicAndVibrationCheckBox.setOnClickListener(onClickListener);
-        musicCheckBox.setOnClickListener(onClickListener);
-        musicNameLayout.setOnClickListener(onClickListener);
+        binding.daysBefore2CheckBox.setOnClickListener(onClickListener);
+    //    vibrationCheckBox.setOnClickListener(onClickListener);
+    //    musicAndVibrationCheckBox.setOnClickListener(onClickListener);
+       // musicCheckBox.setOnClickListener(onClickListener);
+       // musicNameLayout.setOnClickListener(onClickListener);
     }
 
     private void chooseElement(View view) {
@@ -66,8 +67,7 @@ public class ChooseNotificationBehaviourActivity extends AppCompatActivity {
                 musicAndVibrationCheckBox.setChecked(false);
                 musicCheckBox.setChecked(true);
                 break;
-            case R.id.musicNameLayout:
-                startActivity(new Intent(ChooseNotificationBehaviourActivity.this, ChooseSoundActivity.class));
+
         }
     }
 }

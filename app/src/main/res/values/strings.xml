@@ -41,4 +41,8 @@
     <string name="text_after_3_weeks">Every 3 weeks</string>
     <string name="text_monthly">Monthly</string>
     <string name="text_annually">Annually</string>
+    <string name="text_preset_music">Preset Music</string>
+    <string name="text_my_music">My Music</string>
+    <string name="text_song_name">Song Name</string>
+    <string name="text_singer">Singer</string>
 </resources>

@@ -88,8 +88,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-
         <TextView
             android:id="@+id/soundText"
             style="@style/mediumTextView"
@@ -97,14 +95,14 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/between_Image_and_text"
             android:gravity="center"
-            android:text="@string/text_event_sound_mode"
+            android:text="@string/text_music_name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/soundImage"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ringtoneLayout"
+            android:id="@+id/chooseMusicLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:clickable="true"

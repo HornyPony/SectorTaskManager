@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/musicImageView"
+        android:layout_width="@dimen/images_add_event"
+        android:layout_height="@dimen/images_add_event"
+        android:src="@drawable/ic_baseline_music_note_24" />
+
+    <TextView
+        android:id="@+id/musicNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/playButton"
+        android:layout_toEndOf="@+id/musicImageView"
+        android:text="@string/text_song_name"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/singerNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/musicNameTextView"
+        android:layout_toStartOf="@+id/playButton"
+        android:layout_toEndOf="@+id/musicImageView"
+        android:text="@string/text_singer"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:id="@+id/playButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/stopButton"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_baseline_play_arrow_24" />
+
+    <ImageView
+        android:id="@+id/stopButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_baseline_stop_24" />
+
+
+</RelativeLayout>

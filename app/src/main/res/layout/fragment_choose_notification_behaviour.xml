@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SingleActivity.AddEvent.ChooseNotificationBehaviourFragment">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/layouts_paddings">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/images_add_event">
+
+            <TextView
+                style="@style/mediumTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/text_mute" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/muteCheckBox"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:button="@drawable/custom_checkbox" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/images_add_event">
+
+            <TextView
+                style="@style/mediumTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/text_vibration" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/vibrationCheckBox"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:button="@drawable/custom_checkbox" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/images_add_event">
+
+            <TextView
+                style="@style/mediumTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/text_music_and_vibration" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/musicAndVibrationCheckBox"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:button="@drawable/custom_checkbox" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/images_add_event">
+
+            <TextView
+                style="@style/mediumTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/text_only_music" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/musicCheckBox"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:button="@drawable/custom_checkbox" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/images_add_event">
+
+            <TextView
+                style="@style/mediumTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/text_music" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/musicNameLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/reminderBeforeTextView"
+                    style="@style/baseTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/text_music_name"
+                    app:layout_constraintEnd_toStartOf="@+id/musicBeforeArrow" />
+
+                <ImageView
+                    android:id="@+id/musicBeforeArrow"
+                    android:layout_width="@dimen/images_add_event"
+                    android:layout_height="@dimen/images_add_event"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

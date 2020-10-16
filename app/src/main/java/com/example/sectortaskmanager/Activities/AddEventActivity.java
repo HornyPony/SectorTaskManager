@@ -15,9 +15,7 @@ import com.example.sectortaskmanager.R;
 
 import java.util.Calendar;
 
-public class AddEventActivity extends AppCompatActivity implements MyDatePickerFragment.startDateChangedListener, MyDatePickerFragment.startTimeChangedListener,
-        MyDatePickerFragment.endDateChangedListener, MyDatePickerFragment.endTimeChangedListener
-{
+public class AddEventActivity extends AppCompatActivity {
     private ConstraintLayout ringtoneLayout, startTimeLayout, endTimeLayout;
     private TextView startDateTextView, startTimeTextView, endTimeTextView, endDateTextView;
     private Calendar calendar;
@@ -47,8 +45,8 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
                         showStartDatePicker();
                         break;
                     case R.id.endTimeLayout:
-                       showEndDatePicker();
-                       break;
+                        showEndDatePicker();
+                        break;
                 }
             }
         };
@@ -82,25 +80,6 @@ public class AddEventActivity extends AppCompatActivity implements MyDatePickerF
         endTimeTextView.setText(timeString);
     }
 
-    @Override
-    public void changeStartDate(String date) {
-        startDateTextView.setText(date);
-    }
-
-    @Override
-    public void changeStartTime(String time) {
-        startTimeTextView.setText(time);
-    }
-
-    @Override
-    public void changeEndDate(String date) {
-        endDateTextView.setText(date);
-    }
-
-    @Override
-    public void changeEndTime(String time) {
-        endTimeTextView.setText(time);
-    }
 
     private void chooseRingtone() {
         startActivity(new Intent(AddEventActivity.this, ChooseNotificationBehaviourActivity.class));

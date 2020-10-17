@@ -9,20 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
-        <activity
-            android:name=".SingleActivity.AppActivity">
-
+        <activity android:name=".SingleActivity.AppActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intet.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
-        <activity android:name=".Activities.ChooseSoundActivity" />
-        <activity android:name=".Activities.ChooseNotificationBehaviourActivity" />
-        <activity android:name=".Activities.AddEventActivity" />
-        <activity android:name=".Intro.IntroActivity"/>
+        <activity android:name=".Intro.IntroActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

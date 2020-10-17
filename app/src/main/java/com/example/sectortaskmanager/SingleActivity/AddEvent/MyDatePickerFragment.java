@@ -1,14 +1,12 @@
-package com.example.sectortaskmanager;
+package com.example.sectortaskmanager.SingleActivity.AddEvent;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -17,7 +15,6 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
-import java.util.Objects;
 
 public class MyDatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
     private int HOUR;

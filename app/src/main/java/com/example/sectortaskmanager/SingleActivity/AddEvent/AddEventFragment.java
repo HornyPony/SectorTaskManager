@@ -2,7 +2,6 @@ package com.example.sectortaskmanager.SingleActivity.AddEvent;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -16,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.sectortaskmanager.MyDatePickerFragment;
 import com.example.sectortaskmanager.R;
 
 import java.util.Calendar;

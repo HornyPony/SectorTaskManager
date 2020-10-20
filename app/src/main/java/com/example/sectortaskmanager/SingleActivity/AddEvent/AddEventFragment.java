@@ -25,13 +25,10 @@ public class AddEventFragment extends Fragment {
     private Calendar calendar;
     private static final int REQUEST_END_DATE = 1;
     private static final int REQUEST_START_DATE = 2;
-    private static final int REQUEST_END_TIME = 3;
-    private static final int REQUEST_START_TIME = 4;
 
     public AddEventFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -137,7 +134,8 @@ public class AddEventFragment extends Fragment {
     private void chooseNotificationBehaviour() {
         ChooseNotificationBehaviourFragment chooseNotificationBehaviourFragment = new ChooseNotificationBehaviourFragment();
         getFragmentManager().beginTransaction()
-                .replace(R.id.flowFragmentsContainer, chooseNotificationBehaviourFragment)
+                .replace(R.id.addEventContainer, chooseNotificationBehaviourFragment)
+                .addToBackStack(null)
                 .commit();
     }
 

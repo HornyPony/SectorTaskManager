@@ -86,7 +86,8 @@ public class ChooseNotificationBehaviourFragment extends Fragment {
             case R.id.musicNameLayout:
                 ChooseSoundFragment chooseSoundFragment = new ChooseSoundFragment();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.flowFragmentsContainer, chooseSoundFragment)
+                        .replace(R.id.addEventContainer, chooseSoundFragment)
+                        .addToBackStack(null)
                         .commit();
         }
     }

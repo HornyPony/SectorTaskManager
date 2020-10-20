@@ -1,13 +1,8 @@
 package com.example.sectortaskmanager.SingleActivity.AddEvent;
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.view.ContextThemeWrapper;
+import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +13,6 @@ import com.example.sectortaskmanager.R;
 
 public class AddEventFlowFragment extends Fragment {
     private AddEventMainFragment addEventMainFragment;
-    private AddEventFragment addEventFragment;
 
 
     public AddEventFlowFragment() {
@@ -30,9 +24,8 @@ public class AddEventFlowFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         addEventMainFragment = new AddEventMainFragment();
-        addEventFragment = new AddEventFragment();
         getFragmentManager().beginTransaction()
-                .replace(R.id.flowFragmentsContainer, addEventMainFragment)
+                .replace(R.id.addEventContainer, addEventMainFragment)
                 .commit();
     }
 

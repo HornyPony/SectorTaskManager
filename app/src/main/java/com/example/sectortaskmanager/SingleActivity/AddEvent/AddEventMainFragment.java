@@ -1,10 +1,7 @@
 package com.example.sectortaskmanager.SingleActivity.AddEvent;
 
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -23,13 +20,10 @@ public class AddEventMainFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addEventFragment = new AddEventFragment();
-
-
     }
 
     @Override
@@ -43,7 +37,8 @@ public class AddEventMainFragment extends Fragment {
             public void onClick(View view) {
                 addEventFragment = new AddEventFragment();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.flowFragmentsContainer, addEventFragment)
+                        .replace(R.id.addEventContainer, addEventFragment)
+                        .addToBackStack(null)
                         .commit();
             }
         });

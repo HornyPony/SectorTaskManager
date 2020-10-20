@@ -63,7 +63,7 @@ public class MyDatePickerFragment extends DialogFragment implements DatePickerDi
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-        endDate = (getActivity()).getSupportFragmentManager().findFragmentByTag("end date picker");
+        endDate = getActivity().getSupportFragmentManager().findFragmentByTag("end date picker");
         startDate = getActivity().getSupportFragmentManager().findFragmentByTag("start date picker");
         Calendar datePickerCalendar = Calendar.getInstance();
         datePickerCalendar.set(Calendar.YEAR, year);

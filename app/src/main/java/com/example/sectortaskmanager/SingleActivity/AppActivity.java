@@ -22,7 +22,5 @@ public class AppActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.flowFragmentsContainer, addEventFlowFragment)
                 .commit();
-
-
     }
 }

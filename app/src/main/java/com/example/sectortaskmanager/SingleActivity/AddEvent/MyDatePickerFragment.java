@@ -13,8 +13,13 @@ import androidx.fragment.app.Fragment;
 import android.text.format.DateFormat;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.example.sectortaskmanager.SingleActivity.AddEvent.AddEventUtils.SharedPreferencesHelper;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Objects;
 
 public class MyDatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
     private int HOUR;
@@ -23,6 +28,7 @@ public class MyDatePickerFragment extends DialogFragment implements DatePickerDi
     private Fragment endDate;
     private Fragment startDate;
     private Intent dateIntent;
+    private SharedPreferencesHelper mSharedPreferencesHelper;
 
 
     @Override
@@ -33,6 +39,7 @@ public class MyDatePickerFragment extends DialogFragment implements DatePickerDi
         int MONTH = c.get(Calendar.MONTH);
         int DAY = c.get(Calendar.DAY_OF_MONTH);
 
+        mSharedPreferencesHelper = new SharedPreferencesHelper(Objects.requireNonNull(getActivity()));
         return new DatePickerDialog(getActivity(), MyDatePickerFragment.this, YEAR, MONTH, DAY);
     }
 
@@ -72,6 +79,7 @@ public class MyDatePickerFragment extends DialogFragment implements DatePickerDi
         CharSequence dateCharSequence = DateFormat.format("EEE, dd MMM yyyy", datePickerCalendar);
         String dateString = dateCharSequence.toString();
         if (startDate != null) {
+            saveStartDateInSP(datePickerCalendar);
             showTimePicker(dateString);
         } else if (endDate != null) {
            showTimePicker(dateString);
@@ -97,8 +105,15 @@ public class MyDatePickerFragment extends DialogFragment implements DatePickerDi
                 getTargetRequestCode(),
                 Activity.RESULT_OK,
                 dateIntent);
-
-
     }
 
+    private void saveStartDateInSP(Calendar startDatePickerCalendar) {
+        Date date = startDatePickerCalendar.getTime();
+        boolean isAdded = mSharedPreferencesHelper.addUniqueCalendarDate(date);
+        if (isAdded) {
+            Toast.makeText(getActivity(), "Дата добавлена в SharedPreferences", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getActivity(), "Дата уже в SharedPreferences", Toast.LENGTH_LONG).show();
+        }
+    }
 }

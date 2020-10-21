@@ -35,7 +35,7 @@ public class SharedPreferencesHelper {
     public boolean addUniqueCalendarDate(Date date) {
         List<Date> chosenDates = getChosenDates();
         for (Date d : chosenDates) {
-            if (d.equals(date)) {
+            if (d.getDate() == date.getDate()) {
                 return false;//если существует - просто не добавляем
             }
         }

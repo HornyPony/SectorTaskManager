@@ -2,6 +2,7 @@ package com.example.sectortaskmanager.SingleActivity.AddEvent;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -13,18 +14,29 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sectortaskmanager.R;
+import com.example.sectortaskmanager.SingleActivity.AddEvent.AddEventUtils.SharedPreferencesHelper;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Objects;
 
 
 public class AddEventFragment extends Fragment {
     private TextView startDateTextView, startTimeTextView, endTimeTextView, endDateTextView;
+    private Button createEventButton;
     private Calendar calendar;
     private static final int REQUEST_END_DATE = 1;
     private static final int REQUEST_START_DATE = 2;
+    private SharedPreferencesHelper mSharedPreferencesHelper;
+    private Date chosenStartDate, chosenEndDate;
+    String startTime, startDate;
+    String endTime, endDate;
+
 
     public AddEventFragment() {
         // Required empty public constructor
@@ -44,11 +56,14 @@ public class AddEventFragment extends Fragment {
         ConstraintLayout ringtoneLayout = view.findViewById(R.id.ringtoneLayout);
         ConstraintLayout startTimeLayout = view.findViewById(R.id.startTimeLayout);
         ConstraintLayout endTimeLayout = view.findViewById(R.id.endTimeLayout);
+        ConstraintLayout repeatModeLayout = view.findViewById(R.id.repeatModeLayout);
         startDateTextView = view.findViewById(R.id.startDateTextView);
         endDateTextView = view.findViewById(R.id.endDateTextView);
         startTimeTextView = view.findViewById(R.id.startTimeTextView);
         endTimeTextView = view.findViewById(R.id.endTimeTextView);
+        createEventButton = view.findViewById(R.id.createEventBtn);
         calendar = Calendar.getInstance();
+        mSharedPreferencesHelper = new SharedPreferencesHelper(Objects.requireNonNull(getActivity()));
         setInitialDate();
         setInitialTime();
         View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -64,6 +79,11 @@ public class AddEventFragment extends Fragment {
                     case R.id.endTimeLayout:
                         showEndDatePicker();
                         break;
+                    case R.id.createEventBtn:
+                        createEvent();
+                        break;
+                    case R.id.repeatModeLayout:
+                        chooseRepeatMode();
                 }
             }
         };
@@ -71,35 +91,48 @@ public class AddEventFragment extends Fragment {
         ringtoneLayout.setOnClickListener(onClickListener);
         startTimeLayout.setOnClickListener(onClickListener);
         endTimeLayout.setOnClickListener(onClickListener);
+        createEventButton.setOnClickListener(onClickListener);
 
         return view;
     }
 
+    private void createEvent() {
+        if (mSharedPreferencesHelper.compareStartAndEndDates()){
+            Toast.makeText(getActivity(), "Дата была бы добавлена в напоминание", Toast.LENGTH_LONG).show();
+        } else {
+            endDateTextView.setText(startDate);
+            endTimeTextView.setText(startTime);
+        }
+    }
+
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        String time;
-        String date;
+
         if (requestCode == REQUEST_END_DATE && resultCode == Activity.RESULT_OK) {
             // get date from string
-            date = data.getStringExtra("endDate");
-            time = data.getStringExtra("endTime");
+            endDate = data.getStringExtra("endDate");
+            endTime = data.getStringExtra("endTime");
             // set the value of the editText
-            endDateTextView.setText(date);
-            endTimeTextView.setText(time);
+            endDateTextView.setText(endDate);
+            endTimeTextView.setText(endTime);
         }  else if (requestCode == REQUEST_START_DATE && resultCode == Activity.RESULT_OK) {
             // get date from string
-            date = data.getStringExtra("startDate");
-            time = data.getStringExtra("startTime");
+            startDate = data.getStringExtra("startDate");
+            startTime = data.getStringExtra("startTime");
             // set the value of the editText
-            startDateTextView.setText(date);
-            startTimeTextView.setText(time);
+            startDateTextView.setText(startDate);
+            startTimeTextView.setText(startTime);
         }
     }
 
 
     @Override
-    public void onDetach() {
-        super.onDetach();
+    public void onDestroy() {
+        super.onDestroy();
+        mSharedPreferencesHelper.deleteDatesSharedPreferences();
+
     }
 
     private void showEndDatePicker() {
@@ -118,6 +151,8 @@ public class AddEventFragment extends Fragment {
 
 
     private void setInitialDate() {
+        mSharedPreferencesHelper.addStartCalendarDate(calendar.getTime());
+        mSharedPreferencesHelper.addEndCalendarDate(calendar.getTime());
         CharSequence dateCharSequence = DateFormat.format("EEE, dd MMM yyyy", calendar);
         String dateString = dateCharSequence.toString();
         startDateTextView.setText(dateString);

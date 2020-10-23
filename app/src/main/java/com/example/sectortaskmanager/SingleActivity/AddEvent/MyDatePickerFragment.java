@@ -29,6 +29,8 @@ public class MyDatePickerFragment extends DialogFragment implements DatePickerDi
     private Fragment startDate;
     private Intent dateIntent;
     private SharedPreferencesHelper mSharedPreferencesHelper;
+    private String startDateString, endDateString;
+    private Calendar startDatePickerCalendar, endDatePickerCalendar;
 
 
     @Override
@@ -72,21 +74,38 @@ public class MyDatePickerFragment extends DialogFragment implements DatePickerDi
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
         endDate = getActivity().getSupportFragmentManager().findFragmentByTag("end date picker");
         startDate = getActivity().getSupportFragmentManager().findFragmentByTag("start date picker");
-        Calendar datePickerCalendar = Calendar.getInstance();
-        datePickerCalendar.set(Calendar.YEAR, year);
-        datePickerCalendar.set(Calendar.MONTH, month);
-        datePickerCalendar.set(Calendar.DATE, day);
-        CharSequence dateCharSequence = DateFormat.format("EEE, dd MMM yyyy", datePickerCalendar);
-        String dateString = dateCharSequence.toString();
+
         if (startDate != null) {
-            saveStartDateInSP(datePickerCalendar);
-            showTimePicker(dateString);
+            startDateString = chooseStartDate(year, month, day);
+            saveStartDateInSP(startDatePickerCalendar);
+            showTimePicker(startDateString);
         } else if (endDate != null) {
-           showTimePicker(dateString);
+            endDateString = chooseEndDate(year, month, day);
+            saveEndDateInSP(endDatePickerCalendar);
+            showTimePicker(endDateString);
         }
     }
 
-    private void changeEndDate( String endDateString, String endTimeString){
+    private String chooseEndDate(int year, int month, int day) {
+        endDatePickerCalendar = Calendar.getInstance();
+        endDatePickerCalendar.set(Calendar.YEAR, year);
+        endDatePickerCalendar.set(Calendar.MONTH, month);
+        endDatePickerCalendar.set(Calendar.DATE, day);
+        CharSequence endDateCharSequence = DateFormat.format("EEE, dd MMM yyyy", endDatePickerCalendar);
+        return endDateCharSequence.toString();
+
+    }
+
+    private String chooseStartDate(int year, int month, int day) {
+        startDatePickerCalendar = Calendar.getInstance();
+        startDatePickerCalendar.set(Calendar.YEAR, year);
+        startDatePickerCalendar.set(Calendar.MONTH, month);
+        startDatePickerCalendar.set(Calendar.DATE, day);
+        CharSequence startDateCharSequence = DateFormat.format("EEE, dd MMM yyyy", startDatePickerCalendar);
+        return startDateCharSequence.toString();
+    }
+
+    private void changeEndDate(String endDateString, String endTimeString) {
         dateIntent = new Intent();
         dateIntent.putExtra("endDate", endDateString);
         dateIntent.putExtra("endTime", endTimeString);
@@ -94,10 +113,9 @@ public class MyDatePickerFragment extends DialogFragment implements DatePickerDi
                 getTargetRequestCode(),
                 Activity.RESULT_OK,
                 dateIntent);
-
     }
 
-    private void changeStartDate( String startDateString, String startTimeString){
+    private void changeStartDate(String startDateString, String startTimeString) {
         dateIntent = new Intent();
         dateIntent.putExtra("startDate", startDateString);
         dateIntent.putExtra("startTime", startTimeString);
@@ -108,12 +126,12 @@ public class MyDatePickerFragment extends DialogFragment implements DatePickerDi
     }
 
     private void saveStartDateInSP(Calendar startDatePickerCalendar) {
-        Date date = startDatePickerCalendar.getTime();
-        boolean isAdded = mSharedPreferencesHelper.addUniqueCalendarDate(date);
-        if (isAdded) {
-            Toast.makeText(getActivity(), "Дата добавлена в SharedPreferences", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(getActivity(), "Дата уже в SharedPreferences", Toast.LENGTH_LONG).show();
-        }
+        Date startDate = startDatePickerCalendar.getTime();
+        mSharedPreferencesHelper.addStartCalendarDate(startDate);
+    }
+
+    private void saveEndDateInSP(Calendar endDatePickerCalendar) {
+        Date endDate = endDatePickerCalendar.getTime();
+        mSharedPreferencesHelper.addEndCalendarDate(endDate);
     }
 }

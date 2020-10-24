@@ -245,6 +245,9 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/reminderBeforeLayout"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -301,6 +304,9 @@
                 app:layout_constraintVertical_bias="0.5" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/repeatModeLayout"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -352,7 +358,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/between_Image_and_text"
                 android:gravity="center"
-                android:text="@string/text_event_sound"
+                android:text="@string/text_event_sound_mode"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/soundImage"
                 app:layout_constraintTop_toTopOf="parent"
@@ -362,9 +368,10 @@
                 android:id="@+id/ringtoneLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:clickable="true"
                 android:focusable="true"
-                app:layout_constraintEnd_toEndOf="parent">
+                >
 
                 <TextView
                     android:id="@+id/melodyTextView"
@@ -391,7 +398,10 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+<Button
+    android:id="@+id/createEventBtn"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </FrameLayout>

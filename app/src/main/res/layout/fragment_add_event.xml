@@ -358,7 +358,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/between_Image_and_text"
                 android:gravity="center"
-                android:text="@string/text_event_sound_mode"
+                android:text="@string/text_sound_mode"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/soundImage"
                 app:layout_constraintTop_toTopOf="parent"

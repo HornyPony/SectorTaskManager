@@ -26,4 +26,9 @@
     <string name="text_start_time">8:00 am</string>
     <string name="text_end_date">22th September</string>
     <string name="text_end_time">9:00 am</string>
+    <string name="text_sound_mode">Sound Mode</string>
+    <string name="text_song_name">Song Name</string>
+    <string name="text_singer">Singer</string>
+    <string name="text_preset_music">Preset Music</string>
+    <string name="text_my_music">My Music</string>
 </resources>

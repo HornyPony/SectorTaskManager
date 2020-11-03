@@ -4,7 +4,15 @@ public class Music {
     private String musicName;
     private String singerName;
     private int music;
+    private boolean isPlaying = false;
 
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void setPlaying(boolean playing) {
+        isPlaying = playing;
+    }
 
     public int getMusic() {
         return music;
